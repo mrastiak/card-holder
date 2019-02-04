@@ -17,7 +17,7 @@ class TestFoo(LocalApplicationTestCase):
         session.commit()
 
     def test_foo_crud(self):
- 
+
         # Creating a new Foo!
         with self.given(
             'Create a new Foo',
@@ -47,7 +47,8 @@ class TestFoo(LocalApplicationTestCase):
             when(
                 'Retrieve the first foo',
                 f'/apiv1/foos/id: {foo_id}',
-                'GET'
+                'GET',
+                form=dict(),
             )
             assert status == 200
             assert response.json['title'] == 'First foo(edited)'
@@ -68,7 +69,8 @@ class TestFoo(LocalApplicationTestCase):
             when(
                 'Retrieve the first foo',
                 f'/apiv1/foos/id: {foo_id}',
-                'GET'
+                'GET',
+                form={},
             )
             assert status == 404
 
