@@ -3,10 +3,12 @@ from restfulpy.controllers import RootController
 
 import card_holder
 from .foo import FooController
+from .cards import CardController
 
 
 class ApiV1(Controller):
     foos = FooController()
+    cards = CardController()
 
     @json
     def version(self):

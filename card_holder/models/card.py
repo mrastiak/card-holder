@@ -1,7 +1,7 @@
 from restfulpy.orm import DeclarativeBase, Field, FilteringMixin, \
     PaginationMixin, OrderingMixin
 
-from sqlalchemy import Unicode, Integer
+from sqlalchemy import Unicode, Integer, String
 
 
 class Card(FilteringMixin, PaginationMixin, OrderingMixin, DeclarativeBase):
@@ -46,9 +46,8 @@ class Card(FilteringMixin, PaginationMixin, OrderingMixin, DeclarativeBase):
     )
 
 class MyCard(Card):
-    __mapper_args__ = {'polymorphic_identity': __tablename__}
 
-     cvv2 = Field(
+    cvv2 = Field(
          Integer,
          readonly=False,
          minimum=100,
@@ -58,7 +57,7 @@ class MyCard(Card):
          required=False,
          python_type=int,
      )
-     pin1 = Field(
+    pin1 = Field(
          Unicode(4),
          readonly=False,
          min_length=4,
@@ -68,8 +67,8 @@ class MyCard(Card):
          required=False,
          python_type=str,
      )
-     pin2= Field(
-         Uncicode(12),
+    pin2= Field(
+         Unicode(12),
          readonly=False,
          min_length=5,
          max_length=12,
